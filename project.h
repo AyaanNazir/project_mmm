@@ -1,11 +1,14 @@
-#ifndef PROJECT2H_
-#define PROJECT2H_
+#ifndef PROJECTH_
+#define PROJECTH_
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <time.h>
+
+#include<immintrin.h>
+
 #include "blis.h"
 #include "mygemm.h"
 
