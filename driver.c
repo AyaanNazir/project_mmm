@@ -1,4 +1,4 @@
-#include "project2.h"
+#include "project.h"
 
 
 int main(int argc, char *argv[])

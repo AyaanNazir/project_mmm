@@ -1,4 +1,4 @@
-#include "project2.h"
+#include "project.h"
 
 double MaxAbsDiff( int m, int n, double *A, int rsA, int csA, double *B, int rsB, int csB )
 /* 

@@ -1,4 +1,4 @@
-#include "project2.h"
+#include "project.h"
 
 void RandomMatrix( int m, int n, double *A, int rsA, int csA )
 /* 

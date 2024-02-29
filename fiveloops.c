@@ -1,4 +1,4 @@
-#include "project2.h"
+#include "project.h"
 void fiveloops( int m, int n, int k, double *A, int rsA, int csA, 
 	     double *B, int rsB, int csB,  double *C, int rsC, int csC )
 {

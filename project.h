@@ -16,9 +16,9 @@
 
 #define dabs( x ) ( (x) < 0 ? -(x) : x )
 
-#define alpha( i,j ) A[ i*rsA + j*csA ]   // map alpha( i,j ) to array A 
-#define beta( i,j )  B[ i*rsB + j*csB ]   // map beta( i,j )  to array B
-#define gamma( i,j ) C[ i*rsC + j*csC ]   // map gamma( i,j ) to array C
+#define alpha( i,j ) A[ (i)*rsA + (j)*csA ]   // map alpha( i,j ) to array A 
+#define beta( i,j )  B[ (i)*rsB + (j)*csB ]   // map beta( i,j )  to array B
+#define gamma( i,j ) C[ (i)*rsC + (j)*csC ]   // map gamma( i,j ) to array C
 
 double FLA_Clock();      // This is a routine for extracting elapsed
 			 // time borrowed from the libflame library
