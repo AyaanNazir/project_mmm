@@ -23,3 +23,10 @@
 
 #matlab output files
 *.m
+
+
+#latex Files
+*.tex
+*.aux
+*.out
+*.log
