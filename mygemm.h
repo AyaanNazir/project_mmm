@@ -5,11 +5,11 @@
   Any #define or function declaration must be provided in this header.
 */
 
-#define MR 4
-#define NR 4
-#define MC 128
-#define NC 128
-#define KC 128
+#define MR 8
+#define NR 6
+#define MC 288 //temp
+#define NC 288 //temp
+#define KC 288
 
 void fiveloops( int, int, int, double *, int, int, double *, int, int,  double *, int, int );
 
