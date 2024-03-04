@@ -7,9 +7,9 @@
 
 #define MR 8
 #define NR 6
-#define MC 288 //temp
-#define NC 288 //temp
-#define KC 288
+#define MC 96
+#define NC 16384
+#define KC 256
 
 void fiveloops( int, int, int, double *, int, int, double *, int, int,  double *, int, int );
 
