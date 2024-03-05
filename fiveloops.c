@@ -96,9 +96,33 @@ void LoopOne(int m, int n, int k, double *A, double *B, double *C,
  int rsA, int csA, int rsB, int csB, int rsC, int csC)
 {
   for ( int i=0; i<m; i+=MR ) {
-    int ib = MR > m - i ? m - i : MR;
+    int mb = MR > m - i ? m - i : MR;
+     if (mb != MR || n != NR) {
 
-    gemm(k, &A[i * k], B, &gamma( i,0 ), rsA, rsB, rsC, csA, csB, csC);
+      double *packC = (double *) malloc(MR * NR * sizeof(double));
+      for (int j = 0; j < n; j++) {
+        for (int l = 0; l < mb; l++) {
+          packC[l + (j * MR)] = gamma(i + l, j);
+        }
+        for (int l = mb; l < MR; l++) {
+          packC[l + (j * MR)] = 0;
+        }
+      }
+      for (int j = n; j < NR; j++) {
+        for (int l = 0; l < MR; l++) {
+          packC[l + (j * MR)] = 0;
+        }
+      }
+      gemm(k, &A[i * k], B, packC, rsA, rsB, 1, csA, csB, MR);
+      for (int j = 0; j < n; j++) {
+        for (int l = 0; l < mb; l++) {
+          gamma(i + l, j) = packC[l + (j * MR)];
+        }
+      }
+      free(packC);
+    } else {
+      gemm(k, &A[i * k], B, &gamma( i,0 ), rsA, rsB, rsC, csA, csB, csC);
+    }
   }
 }
 
