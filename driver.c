@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
 	k_input = -1;
 
 	nrepeats = NREPEATS;
-	p_begin = P_BEGIN;
-	p_end   = P_END;
-	p_inc   = P_INC;
+	p_begin = 1;
+	p_end   = 100;
+	p_inc   = 1;
 
 	/* Adjust first and last so that they are multiples of inc */
 	printf( "%% Sweeping over matrix sizes:  %d %d %d \n", p_begin, p_end, p_inc );
