@@ -2,31 +2,39 @@
 
 void packPortionA(int m, int k, double *A, double *packA, int csA, int rsA) {
   for (int p = 0; p < k; p++) {
-    for (int i = 0; i < MR; i++) {
+    for (int i = 0; i < m; i++) {
       *packA++ = alpha(i, p);
+    }
+    for (int i = m; i < MR; i++) {
+      *packA++ = 0;
     }
   }
 }
 
 void packageA(int m, int k, double *A, double *packA, int csA, int rsA) {
   for (int i = 0; i < m; i += MR) {
-    packPortionA(m, k, &alpha(i, 0), packA, csA, rsA);
-    packA += MR * k;
+    int mb = MR > m - i ? m - i : MR;
+    packPortionA(mb, k, &alpha(i, 0), packA, csA, rsA);
+    packA += mb * k;
   }
 }
 
 void packPortionB(int k, int n, double *B, double *packB, int csB, int rsB) {
   for (int p = 0; p < k; p++) {
-    for (int j = 0; j < NR; j++) {
+    for (int j = 0; j < n; j++) {
       *packB++ = beta(p, j);
+    }
+    for (int j = n; j < NR; j++) { 
+      *packB++ = 0;
     }
   }
 }
   
 void packageB(int k, int n, double *B, double *packB, int csB, int rsB) {
   for (int j = 0; j < n; j += NR) {
-    packPortionB(k, n, &beta(0, j), packB, csB, rsB);
-    packB += k * NR;
+    int jb = NR > n - j ? n - j : NR;
+    packPortionB(k, jb, &beta(0, j), packB, csB, rsB);
+    packB += k * jb;
   }
 }
 
@@ -146,7 +154,7 @@ void LoopTwo(int m, int n, int k, double *A, double *B, double *C,
 void LoopThree(int m, int n, int k, double *A, double *B, double *C,
  int rsA, int csA, int rsB, int csB, int rsC, int csC)
 {
-  double *packA = (double *) calloc(MC * KC, sizeof(double));
+  double *packA = (double *) malloc(MC * KC * sizeof(double));
   for ( int i=0; i<m; i+=MC ) {
     int ib = MC > m - i ? m - i : MC; 
     // packs A for cache
@@ -159,7 +167,7 @@ void LoopThree(int m, int n, int k, double *A, double *B, double *C,
 void LoopFour(int m, int n, int k, double *A, double *B, double *C,
  int rsA, int csA, int rsB, int csB, int rsC, int csC)
 {
-  double *packB = (double *) calloc(NC * KC, sizeof(double));
+  double *packB = (double *) malloc(NC * KC * sizeof(double));
   for ( int p=0; p<k; p+=KC ) {
     int pb = KC > k - p ? k - p : KC;   
     // packs B for cache
